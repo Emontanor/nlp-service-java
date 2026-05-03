@@ -1,0 +1,7 @@
+com/racconanalytics/nlpservicejava/service/OllamaService.class
+com/racconanalytics/nlpservicejava/NlpServiceApplication.class
+com/racconanalytics/App.class
+com/racconanalytics/nlpservicejava/dto/InferenceRequest.class
+com/racconanalytics/nlpservicejava/dto/InferenceResponse.class
+com/racconanalytics/nlpservicejava/service/PromptBuilder.class
+com/racconanalytics/nlpservicejava/controller/InferenceController.class

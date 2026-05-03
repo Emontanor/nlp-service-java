@@ -1,0 +1,7 @@
+/home/fhernandezm/Documents/Repositorios/nlp-service-java/src/main/java/com/racconanalytics/nlpservicejava/service/PromptBuilder.java
+/home/fhernandezm/Documents/Repositorios/nlp-service-java/src/main/java/com/racconanalytics/dto/InferenceRequest.java
+/home/fhernandezm/Documents/Repositorios/nlp-service-java/src/main/java/com/racconanalytics/App.java
+/home/fhernandezm/Documents/Repositorios/nlp-service-java/src/main/java/com/racconanalytics/nlpservicejava/controller/InferenceController.java
+/home/fhernandezm/Documents/Repositorios/nlp-service-java/src/main/java/com/racconanalytics/nlpservicejava/NlpServiceApplication.java
+/home/fhernandezm/Documents/Repositorios/nlp-service-java/src/main/java/com/racconanalytics/nlpservicejava/service/OllamaService.java
+/home/fhernandezm/Documents/Repositorios/nlp-service-java/src/main/java/com/racconanalytics/dto/InferenceResponse.java
