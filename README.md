@@ -34,7 +34,7 @@ Returns service health and verifies Ollama connectivity.
 Example response:
 
 ```json
-{"status":"healthy","ollama":"connected"}
+{ "status": "healthy", "ollama": "connected" }
 ```
 
 ### Inference
@@ -58,8 +58,18 @@ Response body:
 ```json
 {
   "originalQuery": "latest social media trends in football",
-  "keywords": ["football trends", "sports discussion", "fan reactions", "match highlights", "world cup buzz"],
-  "expandedQueries": ["social media trends about football", "what football topics are popular online", "latest fan conversation about soccer"],
+  "keywords": [
+    "football trends",
+    "sports discussion",
+    "fan reactions",
+    "match highlights",
+    "world cup buzz"
+  ],
+  "expandedQueries": [
+    "social media trends about football",
+    "what football topics are popular online",
+    "latest fan conversation about soccer"
+  ],
   "language": "en"
 }
 ```
@@ -110,6 +120,62 @@ The prompt builder ensures the model returns only valid JSON with the exact fiel
 - Ensure Ollama is running and reachable before using the inference endpoint.
 - The service expects the Ollama model response to include a JSON object inside the `response` field.
 - If the LLM returns invalid JSON, the service will raise an error while parsing the response.
+
+## Docker support
+
+### Dockerfile
+
+A multi-stage Dockerfile is provided to build the service and package a minimal runtime image.
+
+### docker-compose.yml
+
+The compose file builds the Java service and configures it to connect to Ollama on the Docker host via `host.docker.internal`.
+
+### Run with Docker Compose
+
+```bash
+docker compose up --build
+```
+
+This starts the service at `http://localhost:8192` on the host.
+
+### Override Ollama URL if needed
+
+If your Ollama instance runs on a different host or port, set the environment variable before starting:
+
+```bash
+export OLLAMA_API_URL=http://<ollama-host>:11434/api/generate
+docker compose up --build
+```
+
+### Container service routes
+
+- Health: `GET http://localhost:8192/inference/health`
+- Inference: `POST http://localhost:8192/inference`
+
+### Example curl commands
+
+Health check:
+
+```bash
+curl -X GET http://localhost:8192/inference/health
+```
+
+Inference request:
+
+```bash
+curl -X POST http://localhost:8192/inference \
+  -H "Content-Type: application/json" \
+  -d '{
+    "query": "latest social media trends in football",
+    "keywordsCount": 5,
+    "expandedQueriesCount": 3
+  }'
+```
+
+### Notes for Linux Docker hosts
+
+The compose file uses `extra_hosts` with `host-gateway` so the container can reach `host.docker.internal`. This allows the service to talk to an Ollama instance running on the host machine at `http://localhost:11434`.
 
 ## License
 
